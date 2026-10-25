@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google SEO Meta Tags (गूगल सर्च में आने के लिए) -->
+    <title>UPSC Prelims PYQ हिंदी (2001-2024) - विषयवार पिछले वर्षों के प्रश्न</title>
+    <meta name="description" content="UPSC सिविल सेवा प्रारंभिक परीक्षा 2001 से 2024 तक के सभी पिछले वर्षों के प्रश्न (PYQ) हिंदी में, विस्तृत आधिकारिक व्याख्या और विषयवार वर्गीकरण के साथ हल करें।">
+    <meta name="keywords" content="UPSC PYQ Hindi, UPSC Prelims PYQ 2001 to 2024 in Hindi, Shivin Chaudhary style upsc pyq, दृष्टि आईएएस PYQ हिंदी, यूपीएससी प्रारंभिक परीक्षा प्रश्न">
+    <meta name="author" content="UPSC मंथन">
+    <meta name="robots" content="index, follow">
+
+    <!-- Social Media Sharing Meta Tags -->
+    <meta property="og:title" content="UPSC Prelims PYQ 2001-2024 हिंदी पोर्टल">
+    <meta property="og:description" content="24 वर्षों के यूपीएससी प्रीलिम्स प्रश्नों का अध्यायवार संकलन और व्याख्या।">
+    <meta property="og:type" content="website">
+
+    <!-- CSS & Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+        body { font-family: 'Noto Sans Devanagari', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Top Navbar -->
+    <nav class="bg-indigo-950 text-white sticky top-0 z-50 border-b border-indigo-800 shadow">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-amber-400 text-slate-950 font-black px-2.5 py-1 rounded">UPSC</div>
+                <div>
+                    <h1 class="font-bold text-base md:text-lg leading-tight">UPSC PYQ हिंदी पोर्टल</h1>
+                    <p class="text-[10px] text-slate-300">2001 - 2024 (24 वर्ष) सम्पूर्ण प्रश्न बैंक</p>
+                </div>
+            </div>
+
+            <!-- Subject Quick Selector -->
+            <div class="flex items-center gap-2">
+                <select id="subjectDropdown" onchange="loadSubjectQuestions(this.value)" class="bg-indigo-900 border border-indigo-700 text-xs md:text-sm text-white rounded-lg px-3 py-1.5 outline-none">
+                    <option value="polity">भारतीय राजव्यवस्था (Polity)</option>
+                    <option value="history">इतिहास एवं संस्कृति (History)</option>
+                    <option value="economy">अर्थव्यवस्था (Economy)</option>
+                    <option value="geography">भूगोल एवं पर्यावरण (Geo & Env)</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Banner -->
+    <section class="bg-white border-b border-slate-200 py-6 px-4">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <h2 class="text-xl md:text-2xl font-extrabold text-slate-900">
+                    अध्यायवार एवं वर्षवार प्रारंभिक परीक्षा प्रश्न (2001 - 2024)
+                </h2>
+                <p class="text-xs md:text-sm text-slate-500 mt-1">
+                    आधिकारिक UPSC आंसर-की और प्रमाणित हिंदी व्याख्या सहित
+                </p>
+            </div>
+
+            <!-- Year Filter -->
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-slate-600">वर्ष चुनें:</span>
+                <select id="yearFilter" onchange="filterByYear(this.value)" class="bg-slate-100 border border-slate-300 text-xs font-semibold rounded-lg px-3 py-2 outline-none">
+                    <option value="all">सभी वर्ष (2001 - 2024)</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2015">2015</option>
+                    <option value="2010">2010</option>
+                    <option value="2005">2005</option>
+                    <option value="2001">2001</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Questions Area -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <div id="loader" class="text-center py-12 hidden">
+            <i class="fa-solid fa-spinner fa-spin text-3xl text-indigo-600"></i>
+            <p class="text-sm text-slate-500 mt-2">प्रश्न लोड हो रहे हैं...</p>
+        </div>
+
+        <div id="questionsContainer" class="space-y-6">
+            <!-- प्रश्नों का डायनामिक आउटपुट -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 text-center text-xs">
+        <p>© 2026 UPSC PYQ Hindi - सभी अधिकार सुरक्षित। संघ लोक सेवा आयोग के पिछले वर्षों के पेपर्स पर आधारित।</p>
+    </footer>
+
+    <!-- Frontend Logic -->
+    <script>
+        // मास्टर डेटा संरचना (यह उदाहरण है, वास्तविक प्रोजेक्ट में आप अलग-अलग JSON फाइलों से जोड़ेंगे)
+        const database = {
+            polity: [
+                {
+                    id: 1,
+                    year: 2023,
+                    topic: "संसद एवं कानून",
+                    question: "भारत के वित्त विधेयक और धन विधेयक के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:\n1. जब लोकसभा वित्त विधेयक को राज्यसभा में भेजती है, तो राज्यसभा उस विधेयक को संशोधित या अस्वीकार नहीं कर सकती।\n2. जब लोकसभा धन विधेयक को राज्यसभा में भेजती है, तो राज्यसभा उस विधेयक को संशोधित या अस्वीकार नहीं कर सकती, केवल सिफारिशें कर सकती है।\nउपर्युक्त कथनों में से कौन-सा/से सही है/हैं?",
+                    options: ["केवल 1", "केवल 2", "1 और 2 दोनों", "न तो 1 और न ही 2"],
+                    answer: 1,
+                    explanation: "कथन 1 असत्य है क्योंकि राज्यसभा वित्त विधेयक (I) को संशोधित या अस्वीकार कर सकती है। कथन 2 सत्य है क्योंकि धन विधेयक (अनुच्छेद 110) पर राज्यसभा केवल 14 दिन के भीतर सिफारिशें दे सकती है।"
+                },
+                {
+                    id: 2,
+                    year: 2020,
+                    topic: "प्रस्तावना एवं संविधान",
+                    question: "भारत के संविधान की उद्देशिका के बारे में निम्नलिखित में से कौन-सा कथन सही है?",
+                    options: [
+                        "संविधान का भाग है किंतु कोई विधिक प्रभाव नहीं रखती।",
+                        "संविधान का भाग नहीं है और कोई विधिक प्रभाव नहीं रखती।",
+                        "संविधान का भाग है और वैसा ही विधिक प्रभाव रखती है जैसा कि कोई अन्य भाग।",
+                        "संविधान का भाग है किंतु इसके अन्य भागों से स्वतंत्र होकर इसका कोई कानूनी प्रभाव नहीं है।"
+                    ],
+                    answer: 3,
+                    explanation: "केशवानंद भारती वाद (1973) के अनुसार प्रस्तावना संविधान का भाग है, परंतु यह स्वतंत्र रूप से न्यायालय में लागू नहीं करवाई जा सकती (Non-Justiciable)।"
+                },
+                {
+                    id: 3,
+                    year: 2002,
+                    topic: "मौलिक अधिकार",
+                    question: "संविधान के किस अनुच्छेद के तहत 'अस्पृश्यता का अंत' घोषित किया गया है?",
+                    options: ["अनुच्छेद 14", "अनुच्छेद 15", "अनुच्छेद 17", "अनुच्छेद 19"],
+                    answer: 2,
+                    explanation: "अनुच्छेद 17 अस्पृश्यता के अंत और किसी भी रूप में इसके आचरण पर रोक लगाने का स्पष्ट प्रावधान करता है।"
+                }
+            ],
+            history: [
+                {
+                    id: 101,
+                    year: 2021,
+                    topic: "आधुनिक भारत",
+                    question: "1942 के भारत छोड़ो आंदोलन के दौरान किस नेता ने भूमिगत रेडियो स्टेशन का संचालन किया था?",
+                    options: ["उषा मेहता", "अरुणा आसफ अली", "सुचेता कृपलानी", "सरोजिनी नायडू"],
+                    answer: 0,
+                    explanation: "उषा मेहता ने भारत छोड़ो आंदोलन के दौरान बॉम्बे से गुप्त 'कांग्रेस रेडियो' का संचालन किया था, जिससे डॉ. राम मनोहर लोहिया भी जुड़े हुए थे।"
+                }
+            ]
+        };
+
+        let currentSubject = "polity";
+        let activeQuestions = [];
+
+        function loadSubjectQuestions(subject) {
+            currentSubject = subject;
+            activeQuestions = database[subject] || [];
+            renderCards(activeQuestions);
+        }
+
+        function filterByYear(year) {
+            if (year === "all") {
+                renderCards(activeQuestions);
+            } else {
+                const filtered = activeQuestions.filter(q => q.year.toString() === year);
+                renderCards(filtered);
+            }
+        }
+
+        function renderCards(list) {
+            const container = document.getElementById("questionsContainer");
+            if (list.length === 0) {
+                container.innerHTML = `<div class="bg-white p-8 text-center rounded-xl border border-slate-200 text-slate-500">इस वर्ष या विषय के लिए प्रश्न जल्द ही जोड़े जा रहे हैं।</div>`;
+                return;
+            }
+
+            const prefix = ["(A)", "(B)", "(C)", "(D)"];
+
+            container.innerHTML = list.map((q, idx) => `
+                <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex gap-2">
+                            <span class="bg-indigo-50 text-indigo-700 text-xs font-bold px-2.5 py-0.5 rounded border border-indigo-200">UPSC ${q.year}</span>
+                            <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-0.5 rounded">${q.topic}</span>
+                        </div>
+                        <span class="text-xs text-slate-400">ID: #${q.id}</span>
+                    </div>
+
+                    <h3 class="text-slate-900 font-semibold text-base md:text-lg mb-4 whitespace-pre-line leading-relaxed">
+                        ${idx + 1}. ${q.question}
+                    </h3>
+
+                    <div class="space-y-2 mb-4">
+                        ${q.options.map((opt, i) => `
+                            <button onclick="checkAns(${q.id}, ${i}, ${q.answer})" id="btn-${q.id}-${i}" class="w-full text-left p-3 rounded-lg border border-slate-200 text-sm hover:bg-slate-50 transition flex items-start gap-3">
+                                <span class="font-bold text-slate-500 text-xs">${prefix[i]}</span>
+                                <span>${opt}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+
+                    <div id="exp-${q.id}" class="hidden mt-4 p-4 rounded-lg bg-slate-50 border border-slate-200 text-xs md:text-sm">
+                        <p class="font-bold text-emerald-700 mb-1">✓ सही उत्तर: विकल्प ${prefix[q.answer]}</p>
+                        <p class="text-slate-600 leading-relaxed">${q.explanation}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkAns(qid, selected, correct) {
+            const exp = document.getElementById(`exp-${qid}`);
+            const clickedBtn = document.getElementById(`btn-${qid}-${selected}`);
+            const correctBtn = document.getElementById(`btn-${qid}-${correct}`);
+
+            if (selected === correct) {
+                clickedBtn.classList.add("bg-emerald-50", "border-emerald-500", "text-emerald-900", "font-medium");
+            } else {
+                clickedBtn.classList.add("bg-rose-50", "border-rose-400", "text-rose-900");
+                correctBtn.classList.add("bg-emerald-50", "border-emerald-500", "text-emerald-900", "font-medium");
+            }
+            exp.classList.remove("hidden");
+        }
+
+        // आरंभ में लोड करें
+        loadSubjectQuestions("polity");
+    </script>
+</body>
+</html>
